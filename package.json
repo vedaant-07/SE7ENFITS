@@ -1,14 +1,13 @@
 {
   "name": "se7en-fit",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "description": "SE7EN FIT startup app: member fitness companion, gym owner dashboard, and commission tracker.",
+  "description": "SE7EN FIT full stack app for members, workouts, calories, rewards, gym owners and commission tracking.",
   "scripts": {
-    "dev": "npm --prefix ironforge/frontend run dev -- --host 0.0.0.0",
-    "start": "npm --prefix ironforge/frontend run dev -- --host 0.0.0.0",
-    "dev:frontend": "npm --prefix ironforge/frontend run dev -- --host 0.0.0.0",
+    "dev": "npm --prefix ironforge/frontend run dev -- --host 0.0.0.0 --port 5000",
     "dev:backend": "npm --prefix ironforge/backend start",
-    "build": "npm --prefix ironforge/frontend run build"
+    "build": "npm --prefix ironforge/frontend install && npm --prefix ironforge/frontend run build",
+    "start": "npm run build && npm --prefix ironforge/backend start"
   },
   "workspaces": [
     "ironforge/frontend",
