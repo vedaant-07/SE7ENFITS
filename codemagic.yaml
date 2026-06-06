@@ -1,7 +1,6 @@
 workflows:
   se7en-fit-web-check:
     name: SE7EN FIT Web Check
-    instance_type: linux
     max_build_duration: 30
     environment:
       node: 20
@@ -21,7 +20,6 @@ workflows:
 
   se7en-fit-android-apk:
     name: SE7EN FIT Android APK
-    instance_type: linux
     max_build_duration: 60
     environment:
       node: 20
@@ -31,6 +29,7 @@ workflows:
         script: |
           if [ ! -d "apps/mobile/android" ]; then
             echo "apps/mobile/android not found. Native React Native CLI app is not created yet."
+            echo "This repo currently has web/backend code only. Create apps/mobile first."
             exit 1
           fi
       - name: Install mobile packages
