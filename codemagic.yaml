@@ -1,0 +1,44 @@
+workflows:
+  se7en-fit-web-check:
+    name: SE7EN FIT Web Check
+    instance_type: linux_x2
+    max_build_duration: 30
+    environment:
+      node: 20
+    scripts:
+      - name: Install root packages
+        script: npm install
+      - name: Install frontend packages
+        script: npm --prefix ironforge/frontend install
+      - name: Build frontend
+        script: npm --prefix ironforge/frontend run build
+      - name: Install backend packages
+        script: npm --prefix ironforge/backend install
+      - name: Check backend
+        script: node --check ironforge/backend/index.js
+    artifacts:
+      - ironforge/frontend/dist/**
+
+  se7en-fit-android-apk:
+    name: SE7EN FIT Android APK
+    instance_type: linux_x2
+    max_build_duration: 60
+    environment:
+      node: 20
+      java: 17
+    scripts:
+      - name: Check native Android project
+        script: |
+          if [ ! -d "apps/mobile/android" ]; then
+            echo "apps/mobile/android not found. Native React Native CLI app is not created yet."
+            exit 1
+          fi
+      - name: Install mobile packages
+        script: npm --prefix apps/mobile install
+      - name: Build debug APK
+        script: |
+          cd apps/mobile/android
+          chmod +x ./gradlew
+          ./gradlew assembleDebug
+    artifacts:
+      - apps/mobile/android/app/build/outputs/apk/**/*.apk
