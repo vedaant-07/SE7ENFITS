@@ -24,14 +24,14 @@ workflows:
       java: 17
     scripts:
       - name: Install frontend packages
-        script: npm --prefix ironforge/frontend install
+        script: cd ironforge/frontend && npm install
       - name: Build frontend
-        script: npm --prefix ironforge/frontend run build
+        script: cd ironforge/frontend && npm run build
       - name: Add Android platform
-        script: cd ironforge/frontend && npx cap add android || true
+        script: cd ironforge/frontend && node ./node_modules/@capacitor/cli/bin/capacitor add android || true
       - name: Sync Android platform
-        script: cd ironforge/frontend && npx cap sync android
+        script: cd ironforge/frontend && node ./node_modules/@capacitor/cli/bin/capacitor sync android
       - name: Build debug APK
-        script: cd ironforge/frontend/android && chmod +x ./gradlew && ./gradlew assembleDebug
+        script: cd ironforge/frontend/android && ./gradlew assembleDebug
     artifacts:
       - ironforge/frontend/android/app/build/outputs/apk/**/*.apk
