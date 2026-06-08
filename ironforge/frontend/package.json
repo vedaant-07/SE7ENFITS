@@ -1,14 +1,20 @@
 {
   "name": "se7en-fit-frontend",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite --port 5000",
+    "dev": "vite --host 0.0.0.0 --port 5000",
     "build": "vite build",
-    "preview": "vite preview --port 5000"
+    "preview": "vite preview --host 0.0.0.0 --port 5000",
+    "cap:init": "cap init SE7ENFITS com.se7enfits.app --web-dir dist",
+    "cap:add:android": "cap add android",
+    "cap:sync": "cap sync android"
   },
   "dependencies": {
+    "@capacitor/android": "^6.2.1",
+    "@capacitor/cli": "^6.2.1",
+    "@capacitor/core": "^6.2.1",
     "vite": "^5.4.11",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
