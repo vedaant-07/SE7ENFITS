@@ -1,16 +1,29 @@
 {
-  "name": "se7en-fit",
-  "version": "0.2.0",
+  "name": "se7enfits-platform",
+  "version": "0.3.0",
   "private": true,
-  "description": "SE7EN FIT full stack app for members, workouts, calories, rewards, gym owners and commission tracking.",
+  "description": "SE7ENFITS full-stack AI gym ecosystem for members, gym owners and admins.",
   "scripts": {
-    "dev": "npm --prefix ironforge/frontend run dev -- --host 0.0.0.0 --port 5000",
-    "dev:backend": "npm --prefix ironforge/backend start",
-    "build": "npm --prefix ironforge/frontend install && npm --prefix ironforge/frontend run build",
-    "start": "npm run build && npm --prefix ironforge/backend start"
+    "legacy:dev": "npm --prefix ironforge/frontend run dev -- --host 0.0.0.0 --port 5000",
+    "legacy:backend": "npm --prefix ironforge/backend start",
+    "legacy:build": "npm --prefix ironforge/frontend install && npm --prefix ironforge/frontend run build",
+    "legacy:start": "npm run legacy:build && npm --prefix ironforge/backend start",
+    "api:dev": "npm --prefix apps/api run dev",
+    "api:start": "npm --prefix apps/api start",
+    "mobile:notes": "cat apps/mobile/README.md",
+    "owner:notes": "cat apps/owner-web/README.md",
+    "admin:notes": "cat apps/admin-web/README.md",
+    "build": "npm run legacy:build",
+    "start": "npm run legacy:start"
   },
   "workspaces": [
     "ironforge/frontend",
-    "ironforge/backend"
+    "ironforge/backend",
+    "apps/api",
+    "apps/mobile",
+    "apps/owner-web",
+    "apps/admin-web",
+    "packages/shared",
+    "packages/ui"
   ]
 }
